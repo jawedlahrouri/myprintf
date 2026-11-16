@@ -1,24 +1,52 @@
-# 🖨️ MyPrintf — Formatted Output Printing Engine in C
-
 [![Academic Year](https://img.shields.io/badge/Epitech-Tek1-blue?style=for-the-badge&logo=epitech&logoColor=white)](https://www.epitech.eu/)
+[![Language: C](https://img.shields.io/badge/Language-C-00599C.svg?style=for-the-badge&logo=c)](https://en.wikipedia.org/wiki/C_(programming_language))
 [![Module](https://img.shields.io/badge/Module-B--CPE--101-informational?style=for-the-badge)](#)
-[![Language](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white)](#)
 
-## 📘 Description
-**MyPrintf** est une réécriture complète de la fonction standard `printf` de la bibliothèque C libc (`stdio.h`). Développé en utilisant les fonctions variadiques (`<stdarg.h>`), il gère la conversion et le formatage dynamique de chaînes, entiers, nombres flottants et pointeurs.
+# 🖨️ MyPrintf — Moteur d'Écriture Formatée en C (printf clone)
 
-## ⚙️ Spécificateurs gérés
-- `%d`, `%i` : Entiers signés en base décimale.
-- `%u` : Entiers non-signés.
-- `%s`, `%c` : Chaînes de caractères et caractères uniques.
-- `%o`, `%x`, `%X` : Nombres en base octale et hexadécimale (minuscule / majuscule).
-- `%p` : Adresses de pointeurs mémoire.
-- `%b` : Conversion en base binaire.
-- `%%` : Échappement du caractère pourcentage.
-- Modificateurs de précision, de champ et de drapeaux (`#`, `0`, `-`, `+`).
+**MyPrintf** est une réimplémentation complète et optimisée de la fonction de la bibliothèque C standard `printf`. Packagée sous la forme d'une bibliothèque statique autonome `libmy.a`, elle gère les arguments variadiques (`<stdarg.h>`), la conversion de bases numériques et le formatage de chaînes.
 
-## 🔨 Compilation
+---
+
+## 🎯 Spécificateurs de Conversion Supportés
+
+| Spécificateur | Description du Type & Sortie |
+|---|---|
+| `%c` | Caractère simple (`char`). |
+| `%s` | Chaîne de caractères (`char *`). |
+| `%d`, `%i` | Entier relatif signé en base 10 (`int`). |
+| `%u` | Entier naturel non signé en base 10 (`unsigned int`). |
+| `%o` | Nombre non signé converti en base octale (base 8). |
+| `%x` | Nombre non signé converti en base hexadécimale minuscule (`0-9a-f`). |
+| `%X` | Nombre non signé converti en base hexadécimale majuscule (`0-9A-F`). |
+| `%p` | Pointeur d'adresse mémoire affiché en hexadécimal préfixé par `0x`. |
+| `%%` | Caractère pourcent littéral échappé. |
+| Drapeau Espace (`' '`) | Préfixe les entiers positifs par un espace d'alignement. |
+
+---
+
+## 🛠️ Compilation de la Bibliothèque
+
 ```bash
-make
-# Génère la bibliothèque statique libmy.a
+make        # Génère la bibliothèque statique 'libmy.a'
+make clean  # Supprime les fichiers objets temporaires
+make fclean # Supprime les fichiers objets et la bibliothèque libmy.a
+make re     # Recompile l'ensemble
+```
+
+---
+
+## 💡 Exemple d'Utilisation
+
+```c
+#include "my.h"
+
+int main(void)
+{
+    int score = 42;
+    char *user = "Student";
+
+    my_printf("Hello %s ! Votre score est de %d (hex: 0x%x)\n", user, score, score);
+    return 0;
+}
 ```
